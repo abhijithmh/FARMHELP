@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:FARMHELP/main.dart';
-import 'package:FARMHELP/screens/info.dart';
+import 'package:FARMHELP/screens/Imagescreen.dart';
 import 'package:FARMHELP/screens/splash.dart';
 
 class Loginscreen extends StatelessWidget {

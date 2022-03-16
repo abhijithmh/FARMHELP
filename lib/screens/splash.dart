@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:FARMHELP/main.dart';
-import 'package:FARMHELP/screens/info.dart';
+import 'package:FARMHELP/screens/Imagescreen.dart';
 import 'package:FARMHELP/screens/login.dart';
 
 class splashscreen extends StatefulWidget {

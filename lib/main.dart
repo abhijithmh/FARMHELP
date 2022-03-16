@@ -1,14 +1,23 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:FARMHELP/screens/homescreeen.dart';
-import 'package:FARMHELP/screens/info.dart';
+import 'package:FARMHELP/screens/Imagescreen.dart';
 import 'package:FARMHELP/screens/login.dart';
 import 'package:FARMHELP/screens/splash.dart';
 
 const SAVEKEY = 'userLoggedIN';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp(
+      options: const FirebaseOptions(
+          appId: "1:607068044575:android:bd897ea0830da69aae042a",
+          projectId: "farmhelptest2",
+          messagingSenderId: "607068044575",
+          apiKey: ""));
   runApp(MyApp());
 }
 
@@ -38,7 +47,6 @@ class _mainscreenState extends State<mainscreen> {
   final pages = [
     screenhome(),
     HomeScreen(),
-    
   ];
   String Heading = 'FARM HELP';
   @override
