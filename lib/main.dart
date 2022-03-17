@@ -1,3 +1,4 @@
+import 'package:FARMHELP/screens/Locationscreen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -45,8 +46,9 @@ class mainscreen extends StatefulWidget {
 class _mainscreenState extends State<mainscreen> {
   int currentSelection = 0;
   final pages = [
-    screenhome(),
-    HomeScreen(),
+    Homescreen(),
+    ImageScreen(),
+    Locationscreen(),
   ];
   String Heading = 'FARM HELP';
   @override
@@ -83,6 +85,7 @@ class _mainscreenState extends State<mainscreen> {
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
           BottomNavigationBarItem(icon: Icon(Icons.menu), label: 'menu'),
+          BottomNavigationBarItem(icon: Icon(Icons.menu), label: 'location'),
         ],
       ),
       body: pages[currentSelection],

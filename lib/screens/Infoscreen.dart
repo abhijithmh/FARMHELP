@@ -1,49 +1,61 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:FARMHELP/main.dart';
+
 
 class infoscreen extends StatelessWidget {
-  final String name;
-  infoscreen({Key? key, required this.name}) : super(key: key);
+  final int name;
+
+  infoscreen({
+    Key? key,
+    required this.name,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: StreamBuilder(
             stream:
-                FirebaseFirestore.instance.collection("t9w6x6jx9s").snapshots(),
+            FirebaseFirestore.instance.collection("t9w6x6jx9s").snapshots(),
             builder: (context, AsyncSnapshot<QuerySnapshot<Map>> snapshot) {
               if (!snapshot.hasData) {
                 return CircularProgressIndicator();
               } else {
                 return ListView.separated(
-                  itemBuilder: (ctx, index) {
-                    int picindex = index+1;
+                  itemBuilder: (context, count) {
+                    final int count = name - 1;
                     int altitude =
-                        snapshot.data!.docs.elementAt(index).get("altitude");
+                    snapshot.data!.docs.elementAt(count).get("altitude");
                     int ripecount =
-                        snapshot.data!.docs.elementAt(index).get("ripe_count");
-                    int unripecount =
-                    snapshot.data!.docs.elementAt(index).get("unripe_count");
+                    snapshot.data!.docs.elementAt(count).get("ripe_count");
+                    int unripecount = snapshot.data!.docs
+                        .elementAt(count)
+                        .get("unripe_count");
                     return ListBody(
-
                       children: [
-                        Text("Altitude = $altitude"),
-                        Text("Ripe Count = $ripecount"),
-                        Text("Unripe Count = $unripecount")
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text("Altitude = $altitude"),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text("Ripe Count = $ripecount"),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text("Unripe Count = $unripecount"),
+                        )
                       ],
                     );
                   },
-                  separatorBuilder: (ctx, index) {
+                  separatorBuilder: (ctx, count) {
                     return const Divider();
                   },
-                  itemCount: snapshot.data!.docs.length,
+                  itemCount: 1,
                 );
               }
             }),
         appBar: AppBar(
-          title: Text(name),
+          title: Text("$name"),
         ));
   }
 }

@@ -1,12 +1,11 @@
-import 'dart:math';
-
+import 'package:FARMHELP/screens/Imagescreen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:FARMHELP/screens/Infoscreen.dart';
 import 'package:FARMHELP/main.dart';
 
-class ImageScreen extends StatelessWidget {
-  ImageScreen({Key? key}) : super(key: key);
+class Locationscreen extends StatelessWidget {
+  Locationscreen({Key? key}) : super(key: key);
   String Heading = 'FARM HELP';
 
   @override
@@ -14,7 +13,7 @@ class ImageScreen extends StatelessWidget {
     return Scaffold(
       body: StreamBuilder(
           stream:
-              FirebaseFirestore.instance.collection("t9w6x6jx9s").snapshots(),
+          FirebaseFirestore.instance.collection("geohash").snapshots(),
           builder: (context, AsyncSnapshot<QuerySnapshot<Map>> snapshot) {
             if (!snapshot.hasData) {
               return CircularProgressIndicator();
@@ -25,11 +24,9 @@ class ImageScreen extends StatelessWidget {
 
                   return ListTile(
                     onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (ctx) {
-                        return infoscreen(name: picindex);
-                      }));
+
                     },
-                    title: Text("image_$picindex"),
+                    title: Text("location $picindex"),
                   );
                 },
                 separatorBuilder: (ctx, index) {

@@ -23,11 +23,11 @@ class _splashscreenState extends State<splashscreen> {
   Widget build(BuildContext context) {
     return Scaffold(
 
-      body: Center(
+        body: Center(
 
           child: Image.asset(
               'assets/images/logo.jpeg'),
-    ));
+        ));
   }
 }
 
@@ -37,13 +37,14 @@ Future<void> gotoLogin(BuildContext context) async {
     return Loginscreen();
   }));
 }
-Future<void>checKUserLogin(BuildContext context) async{
+
+Future<void> checKUserLogin(BuildContext context) async {
   final sharedprefs = await SharedPreferences.getInstance();
   final userLoggedIN = sharedprefs.getBool(SAVEKEY);
-  if(userLoggedIN ==null || userLoggedIN ==false ){
+  if (userLoggedIN == null || userLoggedIN == false) {
     gotoLogin(context);
   }
-  else{
+  else {
     Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (ctx) {
       return mainscreen();
     }));
