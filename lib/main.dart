@@ -7,7 +7,7 @@ import 'package:FARMHELP/screens/homescreeen.dart';
 import 'package:FARMHELP/screens/Imagescreen.dart';
 import 'package:FARMHELP/screens/login.dart';
 import 'package:FARMHELP/screens/splash.dart';
-
+import 'package:FARMHELP/screens/Locationscreen.dart';
 const SAVEKEY = 'userLoggedIN';
 
 void main() async {
@@ -18,7 +18,7 @@ void main() async {
           appId: "1:607068044575:android:bd897ea0830da69aae042a",
           projectId: "farmhelptest2",
           messagingSenderId: "607068044575",
-          apiKey: ""));
+          apiKey: "AIzaSyAB64iSStZV9u8M-jl0ovLaSx9-EUXnF74"));
   runApp(MyApp());
 }
 
@@ -47,7 +47,6 @@ class _mainscreenState extends State<mainscreen> {
   int currentSelection = 0;
   final pages = [
     Homescreen(),
-    ImageScreen(),
     Locationscreen(),
   ];
   String Heading = 'FARM HELP';
@@ -84,7 +83,7 @@ class _mainscreenState extends State<mainscreen> {
         },
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(icon: Icon(Icons.menu), label: 'menu'),
+
           BottomNavigationBarItem(icon: Icon(Icons.menu), label: 'location'),
         ],
       ),

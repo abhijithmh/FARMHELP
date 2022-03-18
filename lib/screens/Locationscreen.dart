@@ -21,10 +21,14 @@ class Locationscreen extends StatelessWidget {
               return ListView.separated(
                 itemBuilder: (ctx, index) {
                   int picindex = index + 1;
+                  String location =
+                  snapshot.data!.docs.elementAt(index).get("geohash");
 
                   return ListTile(
                     onTap: () {
-
+                      Navigator.push(context, MaterialPageRoute(builder: (ctx) {
+                        return ImageScreen(geohash: location);
+                      }));
                     },
                     title: Text("location $picindex"),
                   );

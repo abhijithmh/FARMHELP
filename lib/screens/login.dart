@@ -15,35 +15,37 @@ class Loginscreen extends StatelessWidget {
         body: SafeArea(
           child: Padding(
             padding: const EdgeInsets.all(15.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: TextFormField(
-                    controller: usernamecontroller,
-                    decoration: const InputDecoration(
-                        border: OutlineInputBorder(), hintText: 'USERNAME'),
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: TextFormField(
+                      controller: usernamecontroller,
+                      decoration: const InputDecoration(
+                          border: OutlineInputBorder(), hintText: 'USERNAME'),
+                    ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: TextFormField(
-                    controller: passswordcontroller,
-                    obscureText: true,
-                    decoration: const InputDecoration(
-                        border: OutlineInputBorder(), hintText: 'PASSWORD'),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: TextFormField(
+                      controller: passswordcontroller,
+                      obscureText: true,
+                      decoration: const InputDecoration(
+                          border: OutlineInputBorder(), hintText: 'PASSWORD'),
+                    ),
                   ),
-                ),
-                ElevatedButton.icon(
-                  onPressed: () {
-                    checklogin(context);
-                  },
-                  icon: Icon(Icons.check),
-                  label: Text('Login'),
-                )
-              ],
+                  ElevatedButton.icon(
+                    onPressed: () {
+                      checklogin(context);
+                    },
+                    icon: Icon(Icons.check),
+                    label: Text('Login'),
+                  )
+                ],
+              ),
             ),
           ),
         ));

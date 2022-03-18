@@ -1,13 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-
 class infoscreen extends StatelessWidget {
   final int name;
+  final String geohash;
 
   infoscreen({
     Key? key,
-    required this.name,
+    required this.name,required this.geohash
   }) : super(key: key);
 
   @override
@@ -15,7 +15,7 @@ class infoscreen extends StatelessWidget {
     return Scaffold(
         body: StreamBuilder(
             stream:
-            FirebaseFirestore.instance.collection("t9w6x6jx9s").snapshots(),
+                FirebaseFirestore.instance.collection(geohash).snapshots(),
             builder: (context, AsyncSnapshot<QuerySnapshot<Map>> snapshot) {
               if (!snapshot.hasData) {
                 return CircularProgressIndicator();
@@ -24,9 +24,9 @@ class infoscreen extends StatelessWidget {
                   itemBuilder: (context, count) {
                     final int count = name - 1;
                     int altitude =
-                    snapshot.data!.docs.elementAt(count).get("altitude");
+                        snapshot.data!.docs.elementAt(count).get("altitude");
                     int ripecount =
-                    snapshot.data!.docs.elementAt(count).get("ripe_count");
+                        snapshot.data!.docs.elementAt(count).get("ripe_count");
                     int unripecount = snapshot.data!.docs
                         .elementAt(count)
                         .get("unripe_count");
