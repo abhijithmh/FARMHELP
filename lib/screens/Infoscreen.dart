@@ -1,18 +1,20 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 
 class infoscreen extends StatelessWidget {
   final int name;
   final String geohash;
 
-  infoscreen({
-    Key? key,
-    required this.name,required this.geohash
-  }) : super(key: key);
+  infoscreen({Key? key, required this.name, required this.geohash})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(
+          title: Text("$name"),
+        ),
         body: StreamBuilder(
             stream:
                 FirebaseFirestore.instance.collection(geohash).snapshots(),
@@ -23,13 +25,16 @@ class infoscreen extends StatelessWidget {
                 return ListView.separated(
                   itemBuilder: (context, count) {
                     final int count = name - 1;
-                    int altitude =
-                        snapshot.data!.docs.elementAt(count).get("altitude");
-                    int ripecount =
-                        snapshot.data!.docs.elementAt(count).get("ripe_count");
+                    int altitude = snapshot.data!.docs
+                        .elementAt(count)
+                        .get("altitude");
+                    int ripecount = snapshot.data!.docs
+                        .elementAt(count)
+                        .get("ripe_count");
                     int unripecount = snapshot.data!.docs
                         .elementAt(count)
                         .get("unripe_count");
+
                     return ListBody(
                       children: [
                         Padding(
@@ -54,8 +59,8 @@ class infoscreen extends StatelessWidget {
                 );
               }
             }),
-        appBar: AppBar(
-          title: Text("$name"),
-        ));
+        );
   }
 }
+
+

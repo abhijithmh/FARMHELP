@@ -1,4 +1,5 @@
 import 'package:FARMHELP/screens/Locationscreen.dart';
+import 'package:FARMHELP/screens/picturescreen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -17,8 +18,11 @@ void main() async {
       options: const FirebaseOptions(
           appId: "1:607068044575:android:bd897ea0830da69aae042a",
           projectId: "farmhelptest2",
+          authDomain: 'farmhelptest2.firebaseapp.com',
           messagingSenderId: "607068044575",
+          storageBucket: "farmhelptest2.appspot.com",
           apiKey: "AIzaSyAB64iSStZV9u8M-jl0ovLaSx9-EUXnF74"));
+
   runApp(MyApp());
 }
 
@@ -48,6 +52,7 @@ class _mainscreenState extends State<mainscreen> {
   final pages = [
     Homescreen(),
     Locationscreen(),
+    picturescreen(),
   ];
   String Heading = 'FARM HELP';
   @override
@@ -84,6 +89,7 @@ class _mainscreenState extends State<mainscreen> {
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
 
+          BottomNavigationBarItem(icon: Icon(Icons.menu), label: 'location'),
           BottomNavigationBarItem(icon: Icon(Icons.menu), label: 'location'),
         ],
       ),
