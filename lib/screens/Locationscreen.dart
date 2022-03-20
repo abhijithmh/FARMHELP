@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:FARMHELP/screens/Infoscreen.dart';
 import 'package:FARMHELP/main.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class Locationscreen extends StatelessWidget {
   Locationscreen({Key? key}) : super(key: key);
@@ -24,17 +25,20 @@ class Locationscreen extends StatelessWidget {
                   String location =
                   snapshot.data!.docs.elementAt(index).get("geohash");
 
+
                   return ListTile(
                     onTap: () {
                       Navigator.push(context, MaterialPageRoute(builder: (ctx) {
                         return ImageScreen(geohash: location);
                       }));
                     },
-                    title: Text("location $picindex"),
+                    title: Center(child: Text("location $picindex")),
                   );
                 },
                 separatorBuilder: (ctx, index) {
-                  return const Divider();
+                  return const Divider(
+                    thickness: 2,
+                  );
                 },
                 itemCount: snapshot.data!.docs.length,
               );

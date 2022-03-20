@@ -1,14 +1,13 @@
 import 'package:FARMHELP/screens/Locationscreen.dart';
-import 'package:FARMHELP/screens/picturescreen.dart';
+import 'package:FARMHELP/screens/Mapscreen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:FARMHELP/screens/homescreeen.dart';
-import 'package:FARMHELP/screens/Imagescreen.dart';
 import 'package:FARMHELP/screens/login.dart';
 import 'package:FARMHELP/screens/splash.dart';
-import 'package:FARMHELP/screens/Locationscreen.dart';
+
 const SAVEKEY = 'userLoggedIN';
 
 void main() async {
@@ -32,7 +31,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(primaryColor: Colors.indigo),
+      theme: ThemeData(
+          primaryColor: Colors.green,
+          backgroundColor: Colors.white,
+          textTheme: TextTheme(
+            bodyText1: TextStyle(color: Colors.black),
+            bodyText2: TextStyle(color: Colors.black),
+          )),
       home: splashscreen(),
     );
   }
@@ -52,7 +57,7 @@ class _mainscreenState extends State<mainscreen> {
   final pages = [
     Homescreen(),
     Locationscreen(),
-    picturescreen(),
+
   ];
   String Heading = 'FARM HELP';
   @override
@@ -76,10 +81,15 @@ class _mainscreenState extends State<mainscreen> {
               onPressed: () {
                 signout(context);
               },
-              icon: Icon(Icons.exit_to_app))
+              icon: Icon(Icons.exit_to_app_rounded,
+                semanticLabel: 'Sign Out',
+              ))
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.green,
+        selectedItemColor: Colors.white,
+        selectedIconTheme: IconThemeData(color: Colors.white),
         currentIndex: currentSelection,
         onTap: (newIdex) {
           setState(() {
@@ -88,9 +98,9 @@ class _mainscreenState extends State<mainscreen> {
         },
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.collections), label: 'location'),
 
-          BottomNavigationBarItem(icon: Icon(Icons.menu), label: 'location'),
-          BottomNavigationBarItem(icon: Icon(Icons.menu), label: 'location'),
         ],
       ),
       body: pages[currentSelection],
