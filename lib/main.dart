@@ -1,3 +1,4 @@
+import 'package:FARMHELP/colors.dart';
 import 'package:FARMHELP/screens/Locationscreen.dart';
 import 'package:FARMHELP/screens/Mapscreen.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -55,11 +56,11 @@ class mainscreen extends StatefulWidget {
 class _mainscreenState extends State<mainscreen> {
   int currentSelection = 0;
   final pages = [
-    Homescreen(),
+    HomeScreen(),
     Locationscreen(),
 
   ];
-  String Heading = 'FARM HELP';
+  String Heading = 'FarmHelp';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -69,13 +70,14 @@ class _mainscreenState extends State<mainscreen> {
             child: Text(
               Heading,
               textAlign: TextAlign.center,
-              style: const TextStyle(
-                fontSize: 40,
+              style:  TextStyle(
+                color: Colors.greenAccent[100],
+                fontSize: 30,
               ),
             ),
           ),
         ),
-        backgroundColor: Colors.green,
+        backgroundColor: appbarColor,
         actions: [
           IconButton(
               onPressed: () {
@@ -88,7 +90,7 @@ class _mainscreenState extends State<mainscreen> {
       ),
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Colors.green,
-        selectedItemColor: Colors.white,
+        selectedItemColor: Colors.greenAccent[100],
         selectedIconTheme: IconThemeData(color: Colors.white),
         currentIndex: currentSelection,
         onTap: (newIdex) {
@@ -111,6 +113,6 @@ class _mainscreenState extends State<mainscreen> {
     final sharedprefs = await SharedPreferences.getInstance();
     await sharedprefs.clear();
     Navigator.of(ctx).pushAndRemoveUntil(
-        MaterialPageRoute(builder: (ctx1) => Loginscreen()), (route) => false);
+        MaterialPageRoute(builder: (ctx1) => loginScreen()), (route) => false);
   }
 }

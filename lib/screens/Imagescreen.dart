@@ -1,3 +1,4 @@
+import 'package:FARMHELP/colors.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:FARMHELP/screens/Infoscreen.dart';
@@ -15,7 +16,10 @@ class ImageScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final Storage storage = Storage();
     return Scaffold(
-      appBar: AppBar(),
+      backgroundColor: backGroundColor,
+      appBar: AppBar(
+        backgroundColor: appbarColor,
+      ),
       body: StreamBuilder(
           stream: FirebaseFirestore.instance.collection(geohash).snapshots(),
           builder: (context, AsyncSnapshot<QuerySnapshot<Map>> snapshot) {
@@ -45,7 +49,7 @@ class ImageScreen extends StatelessWidget {
                                     picture: picture,lat: Lat);
                               }));
                             },
-                            title: Text("image_$picindex"),
+                            title: Text("Image $picindex"),
                             leading: CircleAvatar(
                               backgroundImage: NetworkImage(piclink!),
                             ),

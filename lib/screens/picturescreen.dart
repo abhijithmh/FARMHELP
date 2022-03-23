@@ -1,6 +1,8 @@
 import 'package:FARMHELP/storageservice.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+
+import '../colors.dart';
 class picturescreen extends StatelessWidget {
   final String Picture;
   picturescreen({Key? key, required this.Picture}) : super(key: key);
@@ -9,6 +11,7 @@ class picturescreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final Storage storage = Storage();
     return Scaffold(
+      backgroundColor: backGroundColor,
       appBar: AppBar(),
       body : FutureBuilder(
 

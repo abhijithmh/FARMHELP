@@ -1,3 +1,4 @@
+import 'package:FARMHELP/colors.dart';
 import 'package:FARMHELP/screens/Imagescreen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +13,7 @@ class Locationscreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: backGroundColor,
       body: StreamBuilder(
           stream:
           FirebaseFirestore.instance.collection("geohash").snapshots(),
@@ -32,7 +34,7 @@ class Locationscreen extends StatelessWidget {
                         return ImageScreen(geohash: location);
                       }));
                     },
-                    title: Center(child: Text("location $picindex")),
+                    title: Center(child: Text("Location $picindex")),
                   );
                 },
                 separatorBuilder: (ctx, index) {

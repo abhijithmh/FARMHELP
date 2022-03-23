@@ -6,6 +6,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
+import 'package:FARMHELP/colors.dart';
+
 class infoscreen extends StatelessWidget {
   final int name;
   final String geohash;
@@ -24,8 +26,10 @@ class infoscreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final Storage storage = Storage();
     return Scaffold(
+      backgroundColor: backGroundColor,
       appBar: AppBar(
-        title: Text("$name"),
+        backgroundColor: appbarColor,
+        title: Text("Image $name"),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -71,8 +75,9 @@ class infoscreen extends StatelessWidget {
                                 );
                               }));
                             },
-                            icon: Icon(Icons.photo),
-                            label: Text('location'))
+                            icon: Icon(Icons.location_on),
+                            label: Text('location'),
+                        style: ButtonStyle(backgroundColor:  MaterialStateProperty.all(appbarColor)))
                       ],
                     );
                   }

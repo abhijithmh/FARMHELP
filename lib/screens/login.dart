@@ -1,29 +1,35 @@
-import 'package:flutter/cupertino.dart';
+import 'package:FARMHELP/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:FARMHELP/main.dart';
 
-
-class Loginscreen extends StatelessWidget {
-  Loginscreen({Key? key}) : super(key: key);
-  final usernamecontroller = TextEditingController();
-  final passswordcontroller = TextEditingController();
+class loginScreen extends StatelessWidget {
+  loginScreen({Key? key}) : super(key: key);
+  final usernameController = TextEditingController();
+  final passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.all(15.0),
-            child: SingleChildScrollView(
+        appBar: AppBar(
+          backgroundColor: appbarColor,
+        ),
+        body: Stack(
+          children: [
+            //Container(
+              //child: Image.asset(
+                //"assets/images/blackpapper.jpg",
+                //width: MediaQuery.of(context).size.width,
+                //height: MediaQuery.of(context).size.height ,
+              //),
+            //),
+            SingleChildScrollView(
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: TextFormField(
-                      controller: usernamecontroller,
+                      controller: usernameController,
                       decoration: const InputDecoration(
                           border: OutlineInputBorder(), hintText: 'USERNAME'),
                     ),
@@ -31,7 +37,7 @@ class Loginscreen extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: TextFormField(
-                      controller: passswordcontroller,
+                      controller: passwordController,
                       obscureText: true,
                       decoration: const InputDecoration(
                           border: OutlineInputBorder(), hintText: 'PASSWORD'),
@@ -39,29 +45,29 @@ class Loginscreen extends StatelessWidget {
                   ),
                   ElevatedButton.icon(
                     onPressed: () {
-                      checklogin(context);
+                      checkLogin(context);
                     },
-                    icon: Icon(Icons.check),
-                    label: Text('Login'),
+                    icon: const Icon(Icons.check),
+                    label: const Text('Login'),
                   )
                 ],
               ),
             ),
-          ),
+          ],
         ));
   }
 
-  void checklogin(BuildContext ctx) async {
-    final username = usernamecontroller.text;
-    final password = passswordcontroller.text;
+  void checkLogin(BuildContext ctx) async {
+    final username = usernameController.text;
+    final password = passwordController.text;
     if (username == 'user' && password == 'password') {
-      final sharedprefs = await SharedPreferences.getInstance();
-      await sharedprefs.setBool(SAVEKEY, true);
+      final sharedPref = await SharedPreferences.getInstance();
+      await sharedPref.setBool(SAVEKEY, true);
       Navigator.of(ctx).pushReplacement(MaterialPageRoute(builder: (ctx) {
         return mainscreen();
       }));
     } else {
-      ScaffoldMessenger.of(ctx).showSnackBar(SnackBar(
+      ScaffoldMessenger.of(ctx).showSnackBar(const SnackBar(
           duration: Duration(seconds: 5),
           behavior: SnackBarBehavior.floating,
           margin: EdgeInsets.all(20.0),
